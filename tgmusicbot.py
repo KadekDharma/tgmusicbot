@@ -19,7 +19,7 @@ MUSIC_INFORM_AVAILABILITY = (
     "This bot only serves the specified group and"
     "its members in private chat"
 )
-MUSIC_MAX_LENGTH = 10800
+MUSIC_MAX_LENGTH = 10800000
 
 """
 import os
@@ -32,7 +32,7 @@ from youtube_dl import YoutubeDL
 from PIL import Image
 import ffmpeg
 
-MUSIC_MAX_LENGTH = 10800
+MUSIC_MAX_LENGTH = 10800000
 DELAY_DELETE_INFORM = 10
 TG_THUMB_MAX_LENGTH = 320
 REGEX_SITES = (
@@ -79,7 +79,7 @@ main_filter = (
 
 @app.on_message(main_filter & filters.regex("^/ping$"))
 async def ping_pong(_, message):
-    await _reply_and_delete_later(message, "pong",
+    await _reply_and_delete_later(message, "`Pong!\n%sms`",
                                   DELAY_DELETE_INFORM)
 
 
@@ -99,13 +99,13 @@ async def _fetch_and_send_music(message: Message):
             'writethumbnail': True
         }
         ydl = YoutubeDL(ydl_opts)
-        info_dict = ydl.extract_info(message.text, download=False)
+        info_dict = ydl.extract_info(message.text, download=True)
         # send a link as a reply to bypass Music category check
         if not message.reply_to_message \
                 and _youtube_video_not_music(info_dict):
-            inform = ("This video is not under Music category, "
-                      "you can resend the link as a reply "
-                      "to force download it")
+            inform = ("Video ini tidak termasuk dalam kategori Musik, "
+                      "Jika kamu ingin memutarnya, "
+                      "balas link yang anda kirim tadi dan tambahkan di kolom pesan link yang anda ingin putar")
             await _reply_and_delete_later(message, inform,
                                           DELAY_DELETE_INFORM)
             return
