@@ -79,7 +79,7 @@ main_filter = (
 
 @app.on_message(main_filter & filters.regex("^/ping$"))
 async def ping_pong(_, message):
-    latency = (end - start).microseconds / 1000
+    latency = (start).microseconds / 1000
     await _reply_and_delete_later(message, f"**Pong!**\n`{latency} ms`",
                                   DELAY_DELETE_INFORM)
 
