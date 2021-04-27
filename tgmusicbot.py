@@ -1,4 +1,4 @@
-"""Download music from YouTube/SoundCloud/Mixcloud, convert thumbnail
+"""Download music from YouTube/SoundCloud/Mixcloud,Spotify convert thumbnail
 to square thumbnail and upload to Telegram
 
 Send a link as a reply to bypass Music category check
@@ -34,11 +34,11 @@ import ffmpeg
 
 MUSIC_MAX_LENGTH = 10800000
 DELAY_DELETE_INFORM = 10
-TG_THUMB_MAX_LENGTH = 320
+TG_THUMB_MAX_LENGTH = 720
 REGEX_SITES = (
     r"^((?:https?:)?\/\/)"
     r"?((?:www|m)\.)"
-    r"?((?:youtube\.com|youtu\.be|soundcloud\.com|mixcloud\.com))"
+    r"?((?:youtube\.com|youtu\.be|soundcloud\.com|mixcloud\.com|open.spotify\.com))"
     r"(\/)([-a-zA-Z0-9()@:%_\+.~#?&//=]*)([\w\-]+)(\S+)?$"
 )
 REGEX_EXCLUDE_URL = (
